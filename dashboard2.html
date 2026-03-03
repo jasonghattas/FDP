@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>USJ — Thank You</title>
+
+  <link rel="stylesheet" href="usj_dashboard.css" />
+
+  <style>
+    /* Minimal page-specific styles (keeps same design language) */
+    .center-wrap{
+      min-height: calc(100vh - 220px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .thank-card{
+      max-width: 980px;
+      width: 100%;
+      text-align: center;
+    }
+    .thank-title{
+      margin: 0;
+      font-size: 34px;
+      font-weight: 950;
+      color: var(--navy);
+      letter-spacing: .2px;
+    }
+    .thank-sub{
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 650;
+      line-height: 1.6;
+    }
+    .thank-actions{
+      margin-top: 18px;
+      display:flex;
+      justify-content:center;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(33,45,106,.14);
+      background: rgba(33,45,106,.06);
+      color: var(--navy);
+      font-weight: 900;
+      font-size: 13px;
+      margin-top: 14px;
+    }
+    .footer-note{
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    /* ===== Professional Button Styles ===== */
+
+    .actions{
+      margin-top: 26px;
+      display:flex;
+      justify-content:center;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+.btn{
+  appearance:none;
+  border-radius:16px;
+  padding:14px 22px;
+  font-weight:900;
+  font-size:15px;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  transition:all .25s ease;
+  min-width:180px;
+  justify-content:center;
+}
+
+/* Primary button (main action) */
+.btn-primary{
+  background:var(--navy);
+  color:#fff;
+  box-shadow:0 14px 28px rgba(33,45,106,.35);
+}
+
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 22px 40px rgba(33,45,106,.45);
+}
+
+/* Secondary button */
+.btn-secondary{
+  background:#fff;
+  color:var(--navy);
+  border:2px solid var(--navy);
+}
+
+.btn-secondary:hover{
+  background:var(--navy);
+  color:#fff;
+}
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Same top header style as your dashboards -->
+    <div class="brandbar">
+      <div class="brand-left">
+        <img class="brand-logo" src="usj-ff.png" alt="USJ – Faculté des sciences" />
+        <div class="brand-title">
+          <div class="uni">Université Saint-Joseph de Beyrouth</div>
+          <div class="fac">Faculté des sciences — Project Presentation</div>
+        </div>
+      </div>
+
+      <div class="brand-actions">
+        <span class="badge"><span>✅</span><span>Completed</span></span>
+      </div>
+    </div>
+
+    <div class="center-wrap">
+      <div class="card thank-card">
+        <h1 class="thank-title">Thank You</h1>
+
+        <div class="thank-sub">
+          Questions are welcome.<br/>
+          Privacy-Preserving Federated Learning (FL + DP) — USJ
+        </div>
+
+        <div class="pill">
+          <span>🎓</span>
+          <span>Data Protection — Dr. Rola Osta</span>
+        </div>
+
+        <div class="actions">
+          <a class="btn btn-secondary" href="usj_dashboard1.html">
+            <span>Back to Cover</span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a class="btn btn-primary" href="usj_dashboard.html">
+            <span>View Dashboard</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="footer-note">
+          Prepared by: Jason Ghattas &nbsp;•&nbsp; Ahmad Bandar &nbsp;•&nbsp; Academic Year: 2025 – 2026
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

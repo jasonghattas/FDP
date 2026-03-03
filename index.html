@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>USJ — Project Cover</title>
+
+  <style>
+    :root{
+      --navy:#212D6A;
+      --green:#7CC242;
+      --stone:#A0A07D;
+      --bg:#F3F5FA;
+      --card:#FFFFFF;
+      --text:#11142B;
+      --muted:#6B7280;
+      --border:rgba(33,45,106,.12);
+      --shadow-lg:0 25px 60px rgba(17,20,43,.16);
+      --shadow-md:0 12px 30px rgba(17,20,43,.10);
+      --radius:18px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#ffffff 0%,var(--bg) 100%);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+    }
+
+    .wrap{
+      width:min(980px, 100%);
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-lg);
+      padding:28px;
+    }
+
+    .logo{
+      display:flex;
+      justify-content:center;
+      margin-bottom:18px;
+    }
+
+    .logo img{
+      width:min(680px, 100%);
+      height:auto;
+      object-fit:contain;
+    }
+
+    .title{
+      text-align:center;
+      margin-top:10px;
+    }
+
+    h1{
+      margin:0;
+      font-size:28px;
+      font-weight:950;
+      color:var(--navy);
+      letter-spacing:.2px;
+    }
+
+    .subtitle{
+      margin-top:6px;
+      font-size:15px;
+      font-weight:700;
+      color:var(--muted);
+    }
+
+    .sep{
+      height:1px;
+      background:rgba(33,45,106,.14);
+      margin:18px 0;
+    }
+
+    .meta{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:14px;
+    }
+
+    @media(max-width:720px){
+      .meta{ grid-template-columns:1fr; }
+    }
+
+    .box{
+      background:linear-gradient(180deg,#ffffff,#f8f9ff);
+      border:1px solid rgba(33,45,106,.10);
+      border-radius:14px;
+      padding:14px 16px;
+      box-shadow:var(--shadow-md);
+    }
+
+    .label{
+      font-size:12px;
+      color:var(--muted);
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+
+    .value{
+      margin-top:6px;
+      font-size:16px;
+      font-weight:900;
+      color:var(--text);
+      line-height:1.4;
+    }
+
+    .prepared{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:6px;
+      font-weight:900;
+    }
+
+    .chip{
+      border:1px solid rgba(33,45,106,.16);
+      border-radius:999px;
+      padding:8px 12px;
+      background:#fff;
+      box-shadow:0 8px 18px rgba(17,20,43,.06);
+      font-size:14px;
+    }
+
+    .actions{
+      display:flex;
+      justify-content:center;
+      margin-top:22px;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      appearance:none;
+      border:none;
+      border-radius:14px;
+      padding:12px 18px;
+      font-weight:900;
+      cursor:pointer;
+      transition:transform .2s ease, box-shadow .2s ease;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .btn-primary{
+      background:var(--navy);
+      color:#fff;
+      box-shadow:0 12px 24px rgba(33,45,106,.32);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 32px rgba(33,45,106,.36);
+    }
+
+    .hint{
+      text-align:center;
+      margin-top:12px;
+      font-size:13px;
+      color:var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="card">
+      <!-- Logo -->
+      <div class="logo">
+        <img src="usj-ff.png" alt="USJ — Faculté des sciences" />
+      </div>
+
+      <!-- Title -->
+      <div class="title">
+        <h1>Privacy-Preserving Federated Learning</h1>
+        <div class="subtitle">Integrating Differential Privacy for Secure Distributed Model Training</div>
+      </div>
+
+      <div class="sep"></div>
+
+      <!-- Info -->
+      <div class="meta">
+        <div class="box">
+          <div class="label">Course</div>
+          <div class="value">Data Protection</div>
+        </div>
+
+        <div class="box">
+          <div class="label">Instructor</div>
+          <div class="value">Dr. Rola Osta</div>
+        </div>
+
+        <div class="box">
+          <div class="label">Prepared by</div>
+          <div class="value">
+            <div class="prepared">
+              <span class="chip">Jason Ghattas</span>
+              <span class="chip">Ahmad Bandar</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="label">Academic Year</div>
+          <div class="value">2025 – 2026</div>
+        </div>
+
+        <div class="box" style="grid-column:1/-1;">
+          <div class="label">Submission Date</div>
+          <div class="value">insert</div>
+        </div>
+      </div>
+
+      <!-- Button -->
+      <div class="actions">
+        <a class="btn btn-primary" href="usj_dashboard.html">
+          <span>Open Dashboard</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="hint">
+        Prepared by: Jason Ghattas &nbsp;•&nbsp; Ahmad Bandar &nbsp;•&nbsp; Academic Year: 2025 – 2026
+      </div>
+    </div>
+  </div>
+</body>
+</html>

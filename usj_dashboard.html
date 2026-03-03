@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>USJ — FL + DP Dashboard</title>
+
+  <link rel="stylesheet" href="usj_dashboard.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Brand header stays at the top -->
+    <div class="brandbar">
+      <div class="brand-left">
+        <img class="brand-logo" src="usj-ff.png" alt="USJ – Faculté des sciences" />
+        <div class="brand-title">
+          <div class="uni">Université Saint-Joseph de Beyrouth</div>
+          <div class="fac">Faculté des sciences — Project Dashboard</div>
+        </div>
+      </div>
+
+      <!-- Only status stays here (reload moved above graph) -->
+      <div class="brand-actions">
+        <span id="status" class="status">Idle</span>
+      </div>
+    </div>
+
+    <div class="header">
+      <div class="title">
+        <h1>Federated Learning + Differential Privacy</h1>
+        <div class="subtitle">
+          This dashboard reads:
+          <span class="badge"><span>📄</span><code>results.json</code></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <!-- PROJECT OVERVIEW (your big info section) -->
+      <div class="card span2 doc">
+        <div class="doc-head">
+          <div>
+            <div class="doc-title">Privacy-Preserving Federated Learning</div>
+            <div class="doc-subtitle">Integrating Differential Privacy for Secure Distributed Model Training</div>
+          </div>
+          <div class="badge"><span>🎓</span><span>Class Presentation</span></div>
+        </div>
+
+        <div class="doc-sep"></div>
+
+        <h2>Abstract</h2>
+        <p>
+          This project presents a privacy-preserving machine learning framework that combines Federated Learning (FL)
+          and Differential Privacy (DP). The system trains a predictive model on distributed public health data without
+          centralizing sensitive information.
+        </p>
+        <p>
+          Federated Learning allows multiple clients to collaboratively train a shared global model while keeping raw data local.
+          Differential Privacy enhances this setup by adding controlled noise during training to guarantee formal privacy protection.
+        </p>
+        <p>
+          The experimental results demonstrate that the model converges successfully while maintaining strong privacy guarantees.
+          A custom visualization dashboard was also developed to present training progress and results clearly.
+        </p>
+
+        <div class="doc-sep"></div>
+
+        <h2>1. Introduction</h2>
+        <h3>1.1 Background</h3>
+        <p>
+          Machine learning models typically require centralized datasets. However, centralizing sensitive data such as healthcare
+          or financial information introduces major privacy risks.
+        </p>
+        <p>
+          Federated Learning provides a decentralized approach where training occurs locally on each client device.
+          Differential Privacy strengthens this framework by ensuring that individual data contributions cannot be inferred
+          from the trained model.
+        </p>
+
+        <h3>1.2 Project Objectives</h3>
+        <ul>
+          <li>To implement a Federated Learning simulation using distributed clients.</li>
+          <li>To integrate Differential Privacy during local training.</li>
+          <li>To evaluate convergence of the global model.</li>
+          <li>To visualize results using an interactive dashboard.</li>
+        </ul>
+
+        <div class="doc-sep"></div>
+
+        <h2>2. Dataset Description</h2>
+        <h3>2.1 Data Source</h3>
+        <p>The dataset used in this project contains smoking-attributable healthcare expenditures across U.S. states.</p>
+        <ul>
+          <li><b>Original dataset:</b> 1560 rows, 19 columns</li>
+          <li><b>After preprocessing:</b> 1214 rows</li>
+          <li><b>Selected features:</b> Year, LocationAbbr, Data Value</li>
+          <li>Each state is treated as a separate federated client.</li>
+        </ul>
+
+        <div class="doc-sep"></div>
+
+        <h2>3. System Architecture</h2>
+        <h3>3.1 Federated Learning Setup</h3>
+        <p>The system consists of:</p>
+        <ul>
+          <li>One central server</li>
+          <li>Five simulated clients (states)</li>
+          <li>Five communication rounds</li>
+        </ul>
+
+        <p><b>Training process per round:</b></p>
+        <ol>
+          <li>The server sends global model parameters.</li>
+          <li>Clients train locally using their own data.</li>
+          <li>Differential Privacy is applied during gradient computation.</li>
+          <li>Updated model parameters are sent back.</li>
+          <li>The server aggregates updates.</li>
+        </ol>
+
+        <h3>3.2 Differential Privacy Integration</h3>
+        <p>Differential Privacy was implemented using Opacus. Privacy techniques applied:</p>
+        <ul>
+          <li>Gradient clipping</li>
+          <li>Gaussian noise addition</li>
+          <li>Privacy budget tracking (ε)</li>
+        </ul>
+        <p>This protects against:</p>
+        <ul>
+          <li>Membership inference attacks</li>
+          <li>Model inversion attacks</li>
+          <li>Data leakage risks</li>
+        </ul>
+
+        <div class="doc-sep"></div>
+
+        <h2>4. Implementation</h2>
+        <h3>4.1 Technologies Used</h3>
+        <ul>
+          <li>Python</li>
+          <li>PyTorch</li>
+          <li>Flower Framework (Federated Learning)</li>
+          <li>Opacus (Differential Privacy)</li>
+          <li>Pandas</li>
+          <li>HTML &amp; JavaScript (Dashboard Visualization)</li>
+        </ul>
+
+        <h3>4.2 Project Structure</h3>
+        <pre class="codebox">fl_dp_project/
+│
+├── dashboard.html
+├── results.json
+├── training_results.xlsx
+├── fl_client.py
+├── scripts/
+│   ├── run_fl.py
+│   ├── export_results.py
+│   ├── split_clients.py
+│   └── prepare_data.py
+├── data/
+└── .venv/</pre>
+
+        <div class="doc-sep"></div>
+
+        <h2>5. Experimental Results</h2>
+        <h3>5.1 Distributed Loss Across Rounds</h3>
+        <div class="table-lite">
+          <table>
+            <thead>
+              <tr>
+                <th>Round</th>
+                <th>Distributed Loss</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="num">1</td><td class="num">422,554</td></tr>
+              <tr><td class="num">2</td><td class="num">400,235</td></tr>
+              <tr><td class="num">3</td><td class="num">377,850</td></tr>
+              <tr><td class="num">4</td><td class="num">357,244</td></tr>
+              <tr><td class="num">5</td><td class="num">336,343</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted">
+          The decreasing loss confirms successful model convergence despite the presence of Differential Privacy noise.
+        </p>
+
+        <div class="doc-sep"></div>
+
+        <h2>6. Visualization Dashboard</h2>
+        <p>A custom HTML dashboard was developed to present:</p>
+        <ul>
+          <li>Training rounds</li>
+          <li>Loss curve visualization</li>
+          <li>Privacy metrics</li>
+          <li>Training timestamp</li>
+        </ul>
+        <p>
+          The dashboard dynamically reads data from <code>results.json</code>, allowing live visualization during project demonstration.
+        </p>
+
+        <div class="doc-sep"></div>
+
+        <h2>7. Discussion</h2>
+        <ul>
+          <li>No raw data sharing</li>
+          <li>Formal mathematical privacy guarantees</li>
+          <li>Continued model performance and convergence</li>
+        </ul>
+        <p>
+          This approach is applicable to healthcare systems, financial institutions, and distributed IoT networks.
+        </p>
+
+        <div class="doc-sep"></div>
+
+        <h2>8. Conclusion</h2>
+        <p>
+          This project demonstrates that privacy-preserving distributed machine learning is feasible and effective.
+          By combining Federated Learning with Differential Privacy, it is possible to train models securely without compromising sensitive data.
+        </p>
+        <p><b>Future improvements may include:</b></p>
+        <ul>
+          <li>Increasing the number of clients</li>
+          <li>Real multi-device deployment</li>
+          <li>Advanced privacy accounting methods</li>
+        </ul>
+      </div>
+
+      <!-- LOSS CURVE CARD -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Loss curve</div>
+            <div class="muted">Lower is better</div>
+          </div>
+
+          <!-- Reload moved here (directly above the graph) -->
+          <div class="card-actions">
+            <button id="reloadBtn" type="button">Reload data</button>
+          </div>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="chart"></canvas>
+        </div>
+
+        <div id="errorBox" class="err" style="display:none;"></div>
+      </div>
+
+      <!-- SUMMARY CARD -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Run summary</div>
+          <div class="badge"><span>⚙️</span><span>Metrics</span></div>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi">
+            <div class="label">Generated at</div>
+            <div class="value"><code id="generatedAt">-</code></div>
+          </div>
+          <div class="kpi">
+            <div class="label">Rounds</div>
+            <div class="value" id="roundCount">-</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Latest loss</div>
+            <div class="value" id="latestLoss">-</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Latest epsilon (DP)</div>
+            <div class="value" id="latestEps">-</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLE -->
+      <div class="card span2">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Round results</div>
+            <div class="muted">Per-round loss and privacy budget (epsilon)</div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Round</th>
+                <th>Loss</th>
+                <th>Epsilon (DP)</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<div style="margin-top:20px; display:flex; justify-content:flex-end; gap:12px; flex-wrap:wrap;">
+  <button type="button" onclick="location.href='dashboard2.html'">
+     Finish Presentation →
+  </button>
+</div>
+
+<script>
+const DATA_URL = "results.json";
+let chart;
+
+const statusEl = document.getElementById("status");
+const errorBox = document.getElementById("errorBox");
+const generatedAtEl = document.getElementById("generatedAt");
+const roundCountEl = document.getElementById("roundCount");
+const latestLossEl = document.getElementById("latestLoss");
+const latestEpsEl = document.getElementById("latestEps");
+const rowsEl = document.getElementById("rows");
+
+document.getElementById("reloadBtn").addEventListener("click", load);
+
+function fmtNum(x, digits = 6) {
+  if (x === null || x === undefined) return "-";
+  const n = Number(x);
+  if (!Number.isFinite(n)) return "-";
+  return n.toLocaleString(undefined, { maximumFractionDigits: digits });
+}
+
+function showError(msg) {
+  if (!msg) {
+    errorBox.style.display = "none";
+    errorBox.textContent = "";
+    return;
+  }
+  errorBox.style.display = "block";
+  errorBox.textContent = msg;
+}
+
+function setStatus(text, kind) {
+  statusEl.textContent = text;
+  statusEl.className = "status" + (kind ? (" " + kind) : "");
+}
+
+async function load() {
+  showError("");
+  setStatus("Loading…", "");
+
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status} while loading ${DATA_URL}`);
+
+    const data = await res.json();
+    if (!data || !Array.isArray(data.rows)) {
+      throw new Error("Invalid JSON format: expected { rows: [...] }");
+    }
+
+    const rows = data.rows
+      .map(r => ({
+        round: r?.round,
+        loss: Number(r?.loss),
+        epsilon: (r?.epsilon === null || r?.epsilon === undefined) ? null : Number(r?.epsilon),
+      }))
+      .filter(r => r.round !== null && r.round !== undefined && Number.isFinite(r.loss));
+
+    if (!rows.length) {
+      throw new Error("No valid rows found (need at least: round + numeric loss).");
+    }
+
+    render({ generated_at: data.generated_at, rows });
+    setStatus("Loaded ✅", "ok");
+  } catch (err) {
+    setStatus("Failed ❌", "err");
+    showError(String(err?.message || err));
+  }
+}
+
+function render(data) {
+  generatedAtEl.textContent = data.generated_at || "-";
+  roundCountEl.textContent = data.rows.length;
+
+  const last = data.rows[data.rows.length - 1];
+  latestLossEl.textContent = fmtNum(last?.loss);
+  latestEpsEl.textContent = (last?.epsilon === null) ? "-" : fmtNum(last?.epsilon);
+
+  rowsEl.innerHTML = "";
+  for (const r of data.rows) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="num">${r.round ?? "-"}</td>
+      <td class="num">${fmtNum(r.loss)}</td>
+      <td class="num">${(r.epsilon === null) ? "-" : fmtNum(r.epsilon)}</td>
+    `;
+    rowsEl.appendChild(tr);
+  }
+
+  drawChart(data.rows);
+}
+
+const glowLine = {
+  id: "glowLine",
+  beforeDatasetsDraw(chart) {
+    const { ctx } = chart;
+    ctx.save();
+    ctx.shadowColor = "rgba(33,45,106,0.35)";
+    ctx.shadowBlur = 14;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 6;
+  },
+  afterDatasetsDraw(chart) {
+    chart.ctx.restore();
+  }
+};
+
+function drawChart(rows) {
+  const canvas = document.getElementById("chart");
+  const ctx = canvas.getContext("2d");
+
+  const gradient = ctx.createLinearGradient(0, 0, 0, 420);
+  gradient.addColorStop(0, "rgba(33,45,106,0.28)");
+  gradient.addColorStop(1, "rgba(33,45,106,0)");
+
+  const labels = rows.map(r => r.round);
+  const values = rows.map(r => r.loss);
+
+  if (chart) chart.destroy();
+
+  chart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels,
+      datasets: [{
+        label: "Training Loss",
+        data: values,
+        borderColor: "#212D6A",
+        backgroundColor: gradient,
+        fill: true,
+        tension: 0.38,
+        borderWidth: 3,
+        pointRadius: 3,
+        pointHoverRadius: 6,
+        pointBackgroundColor: "#7CC242",
+        pointHoverBackgroundColor: "#7CC242",
+        pointBorderWidth: 0,
+        borderCapStyle: "round",
+        borderJoinStyle: "round",
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 1400, easing: "easeOutQuart" },
+      interaction: { mode: "index", intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          padding: 10,
+          displayColors: false,
+          backgroundColor: "rgba(33,45,106,0.95)",
+          titleColor: "#fff",
+          bodyColor: "#fff",
+          callbacks: {
+            title: (items) => `Round ${items[0].label}`,
+            label: (item) => `Loss: ${fmtNum(item.raw, 6)}`
+          }
+        }
+      },
+      scales: {
+        x: {
+          title: { display: true, text: "Rounds" },
+          grid: { color: "rgba(33,45,106,0.06)" },
+          ticks: { maxRotation: 0 }
+        },
+        y: {
+          title: { display: true, text: "Loss" },
+          grid: { color: "rgba(33,45,106,0.08)" },
+          ticks: {
+            callback: (v) => Number(v).toLocaleString(undefined, { maximumFractionDigits: 4 })
+          }
+        }
+      }
+    },
+    plugins: [glowLine]
+  });
+}
+
+load();
+</script>
+
+</body>
+</html>
